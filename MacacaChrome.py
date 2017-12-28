@@ -19,6 +19,12 @@ server_url = {
 }
 
 
+def switch_to_webview(driver):
+    contexts = driver.contexts
+    driver.context = contexts[-1]
+    return driver
+
+
 class MacacaTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -36,8 +42,8 @@ class MacacaTest(unittest.TestCase):
         cls.driver.init()
 
     def test_search_macaca(self):
-        # self.driver.get('https://www.baidu.com')
-        self.driver.element('id', "kw").send_keys("macaca")
+        self.driver.get('https://www.baidu.com')
+        switch_to_webview(self.driver).wait_for_element.element('id', "index-kw").send_keys("macaca")
         self.driver.element('id', "su").click()
         sleep(2)
         title = self.driver.title

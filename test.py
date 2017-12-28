@@ -9,8 +9,8 @@ from retrying import retry
 
 desired_caps = {
     'platformName': 'android',
-    # 'app': 'C:/android_app_bootstrap-debug.apk'
-    'app': 'C:/google.apk'
+    'app': 'C:/android_app_bootstrap-debug.apk'
+    # 'app': 'C:/google.apk'
 
     }
 server_url = {
@@ -48,66 +48,68 @@ class MacacaTest(unittest.TestCase):
         cls.driver.init()
 
     def test_01_login(self):
-        el = self.driver.elements_by_class_name('android.widget.EditText')[0].send_keys('中文+Test+12345678')
-        el = self.driver.elements_by_class_name('android.widget.EditText')[1].send_keys('111111')
+        el = self.driver.elements('class_name', 'android.widget.EditText')[0].send_keys('中文+Test+12345678')
+        el = self.driver.elements('class_name', 'android.widget.EditText')[1].send_keys('111111')
         time.sleep(1)
         # self.driver.keys(Keys.ENTER.value + Keys.ESCAPE.value)
         self.driver.element_by_name('Login').click()
 
     def test_02_scroll_tableview(self):
-        self.driver.wait_for_element_by_name('HOME').click()
-        self.driver.wait_for_element_by_name('list').click()
+        self.driver.wait_for_element('name', 'HOME').click()
+        self.driver.wait_for_element('name', 'list').click()
         self.driver.back()
-    # def test_03_gesture(self):
-    #     time.sleep(5)
-    #     self.driver.wait_for_element_by_name('Alert').click()
-    #     time.sleep(5)
-    #     self.driver .accept_alert()
-    #     time.sleep(3)
-    #     self.driver.back()
-    #     time.sleep(3)
-    #     self.driver.wait_for_element_by_name('Gesture').click()
-    #     time.sleep(3)
-    #     self.driver .touch('tap', {
-    #           'x': 100,
-    #           'y': 100
-    #         })
-    #     time.sleep(5)
-    #     self.driver .touch('doubleTap', {
-    #           'x': 100,
-    #           'y': 100
-    #         })
-    #     time.sleep(5)
-    #     self.driver.touch('press', {
-    #           'x': 100,
-    #           'y': 100,
-    #           'steps': 100
-    #         })
-    #     time.sleep(5)
-    #     self.driver.touch('drag', {
-    #           'fromX': 100,
-    #           'fromY': 100,
-    #           'toX': 100,
-    #           'toY': 600,
-    #           'steps': 100
-    #         })
-    #     time.sleep(5)
-    #     self.driver.back()
-    #     time.sleep(5)
-    #     self.driver.back()
 
-    # def test_04_webview(self):
-    #     self.driver.wait_for_element_by_name('Webview').click()
-    #     time.sleep(5)
-    #     self.driver.save_screenshot('./webView.png')     # save screen shot
-    #     switch_to_webview(self.driver) .wait_for_element_by_id('pushView').click()
-    #     switch_to_webview(self.driver).wait_for_element_by_id('popView').click()
+    def test_03_gesture(self):
+        self.driver.wait_for_element('name', 'HOME').click()
+        self.driver.wait_for_element('name', 'list').click()
+        time.sleep(3)
+        self.driver.wait_for_element('name', 'Alert').click()
+        time.sleep(3)
+        self.driver .accept_alert()
+        time.sleep(3)
+        self.driver.back()
+        time.sleep(3)
+        self.driver.wait_for_element('name', 'Gesture').click()
+        time.sleep(3)
+        self.driver .touch('tap', {
+              'x': 100,
+              'y': 100
+            })
+        time.sleep(5)
+        self.driver .touch('doubleTap', {
+              'x': 100,
+              'y': 100
+            })
+        time.sleep(3)
+        self.driver.touch('press', {
+              'x': 100,
+              'y': 100,
+              'steps': 100
+            })
+        time.sleep(3)
+        self.driver.touch('drag', {
+              'fromX': 100,
+              'fromY': 100,
+              'toX': 100,
+              'toY': 600,
+              'steps': 100
+            })
+        time.sleep(5)
+        self.driver.back()
+        self.driver.back()
+
+    def test_04_webview(self):
+        self.driver.wait_for_element('name', 'Webview').click()
+        time.sleep(5)
+        self.driver.save_screenshot('./webView.png')     # save screen shot
+        self.driver.wait_for_element('name', 'pushView').click()
+        self.driver.wait_for_element('name', 'popView').click()
 
     def test_05_web(self):
         self.driver.wait_for_element('name', 'Baidu').click()
         time.sleep(5)
         self.driver.save_screenshot("./baidu.png")
-        switch_to_webview(self.driver).wait_for_element('id', 'index-kw') .send_keys('macaca')
+        self.driver.wait_for_element('id', 'index-kw') .send_keys('macaca')
         self.driver.wait_for_element('id', 'index-bn').click()
 
     def test_06_logout(self):
