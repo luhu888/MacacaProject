@@ -4,7 +4,7 @@ from macaca import WebDriver
 import time
 
 desired_caps = {
-    'browserName': 'Chrome',  # Electon, Safari(iOS).
+    'browserName': 'Chrome',  # Electon, Safari(iOS).Chrome
     'platformName': 'Desktop',  # iOS, Android, Desktop
     # 'platformVersion': '*',
     'autoAcceptAlerts': True
