@@ -9,7 +9,8 @@ from retrying import retry
 
 desired_caps = {
     'platformName': 'android',
-    'app': 'C:/android_app_bootstrap-debug.apk'
+    'app': 'C:/pinduoduo_gw_pc_latest.apk'
+    # 'app': 'C:/android_app_bootstrap-debug.apk'
     # 'app': 'C:/google.apk'
 
     }
