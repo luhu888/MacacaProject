@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>新核云地图</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.4.5&key=3c43bfc9f5bcc8a35e4d029fc6a1f106"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript">
+    var infoWindow;
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+		center: [121.467295,31.192374],
+        zoom: 15
+    });
+    //在指定位置打开信息窗体
+        var info = [];
+        info.push("<div><div><img style=\"float:left;\" src=\" http://webapi.amap.com/images/autonavi.png \"/></div>");
+        info.push("<div style=\"padding:0px 0px 0px 4px;\"><b>新核云</b>");
+        info.push("电话 : 010-84107000   邮编 : 100102");
+        info.push("地址 :上海市徐汇区中山南二路美奂大厦8层</div></div>");
+        infoWindow = new AMap.InfoWindow({
+            content: info.join("<br/>")  //使用默认信息窗体框样式，显示信息内容
+        });
+        infoWindow.open(map, map.getCenter());
+</script>
+<script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
+</body>
+</html>
